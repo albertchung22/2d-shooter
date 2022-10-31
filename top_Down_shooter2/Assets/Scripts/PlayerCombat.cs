@@ -7,6 +7,7 @@ public class PlayerCombat : MonoBehaviour
 
     public Animator myAnim;
     public bool isAttacking = false;
+    public bool isTaunting = false;
     public static PlayerCombat instance;
 
     private void Awake()
@@ -21,9 +22,11 @@ public class PlayerCombat : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         Attack();
+
+        Taunt();
     }
 
     private void Attack()
@@ -31,6 +34,14 @@ public class PlayerCombat : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.U))
         {
             isAttacking = true;
+        }
+    }
+
+    private void Taunt()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            isTaunting = true;
         }
     }
 }
