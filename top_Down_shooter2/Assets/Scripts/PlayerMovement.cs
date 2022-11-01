@@ -8,6 +8,8 @@ public class PlayerMovement : MonoBehaviour
     private float speed = 5f;
     private float jumpingPower = 8f;
     private bool isFacingRight = true;
+    public bool isWalking = false;
+    public static PlayerMovement instance;
 
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
@@ -18,6 +20,11 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         horizontal = Input.GetAxisRaw("Horizontal"); //returns a value of +/-1 or 0 depending on direction moved
+
+        if (horizontal != 0)
+        {
+            isWalking = true;
+        }
 
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
@@ -54,5 +61,10 @@ public class PlayerMovement : MonoBehaviour
             localScale.x *= -1f;
             transform.localScale = localScale;
         }
+    }
+
+    private void Awake()
+    {
+        instance = this;
     }
 }

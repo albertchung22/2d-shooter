@@ -22,6 +22,11 @@ public class idleScript : StateMachineBehaviour
         {
             PlayerCombat.instance.myAnim.Play("taunt");
         }
+
+        if (PlayerMovement.instance.isWalking)
+        {
+            PlayerCombat.instance.myAnim.Play("walk");
+        }
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
@@ -29,6 +34,7 @@ public class idleScript : StateMachineBehaviour
     {
         PlayerCombat.instance.isAttacking = false;
         PlayerCombat.instance.isTaunting = false;
+        PlayerMovement.instance.isWalking = false;
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
