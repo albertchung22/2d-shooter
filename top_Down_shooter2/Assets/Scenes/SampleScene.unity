@@ -500,6 +500,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a14561aa43704744d8c3c1387e9f68f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isWalking: 0
+  animator: {fileID: 970920378}
   rb: {fileID: 970920375}
   groundCheck: {fileID: 43379744}
   groundLayer:
@@ -518,7 +520,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.029647768, y: 0.00090765953}
+  m_Offset: {x: 0.029647768, y: 0.003638953}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -529,7 +531,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.4581654, y: 1.1068435}
+  m_Size: {x: 0.4581654, y: 1.1013808}
   m_EdgeRadius: 0
 --- !u!50 &970920375
 Rigidbody2D:
@@ -613,7 +615,7 @@ Transform:
   m_GameObject: {fileID: 970920372}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 43379744}
@@ -654,3 +656,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myAnim: {fileID: 0}
   isAttacking: 0
+  isTaunting: 0

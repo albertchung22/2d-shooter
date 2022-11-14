@@ -5,11 +5,12 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private float horizontal;
-    private float speed = 5f;
-    private float jumpingPower = 8f;
+    private float speed = 3.5f;
+    private float jumpingPower = 4f;
     private bool isFacingRight = true;
     public bool isWalking = false;
     public static PlayerMovement instance;
+    public Animator animator;
 
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
@@ -21,17 +22,19 @@ public class PlayerMovement : MonoBehaviour
     {
         horizontal = Input.GetAxisRaw("Horizontal"); //returns a value of +/-1 or 0 depending on direction moved
 
-        if (horizontal != 0)
+        /*if (horizontal != 0)
         {
             isWalking = true;
-        }
+        }*/
 
-        if (Input.GetButtonDown("Jump") && IsGrounded())
+        animator.SetFloat("Speed", Mathf.Abs(horizontal));
+
+        if (Input.GetKeyDown(KeyCode.W) && IsGrounded())
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpingPower); //when jump button is pressed and player is grounded, player jumps by having y-value set to jumpingPower
         }
 
-        if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f) //allows user to jump higher or lower depending duration of button press
+        if (Input.GetKeyUp(KeyCode.W) && rb.velocity.y > 0f) //allows user to jump higher or lower depending on duration of button press
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
         }
