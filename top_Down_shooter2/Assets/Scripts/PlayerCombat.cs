@@ -8,6 +8,9 @@ public class PlayerCombat : MonoBehaviour
     public Animator myAnim;
     public bool isAttacking = false;
     public bool isTaunting = false;
+    public bool SwayForward = false;
+    public bool SwayBackward = false;
+    public bool BackwardAtk = false;
     public static PlayerCombat instance;
 
     private void Awake()
@@ -27,6 +30,10 @@ public class PlayerCombat : MonoBehaviour
         Attack();
 
         Taunt();
+
+        swayF();
+
+        swayB();
     }
 
     private void Attack()
@@ -42,6 +49,29 @@ public class PlayerCombat : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q))
         {
             isTaunting = true;
+        }
+    } 
+
+    private void swayF()
+    {
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            SwayForward = true;
+            PlayerMovement.instance.animator.SetFloat("Speed", Mathf.Abs(0));
+        }
+    }
+
+    private void swayB()
+    {
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            SwayBackward = true;
+            PlayerMovement.instance.animator.SetFloat("Speed", Mathf.Abs(0));
+        }
+        
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            BackwardAtk = true;
         }
     }
 }
