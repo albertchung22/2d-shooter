@@ -12,6 +12,11 @@ public class PlayerCombat : MonoBehaviour
     public bool SwayBackward = false;
     public bool BackwardAtk = false;
     public static PlayerCombat instance;
+	public bool Grab2 = false;
+	
+	public Transform grabPoint;
+	public float grabRange = 0.2f;
+	public LayerMask enemyLayers;
 
     private void Awake()
     {
@@ -49,7 +54,12 @@ public class PlayerCombat : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q))
         {
             isTaunting = true;
-        }
+			Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(grabPoint.position, grabRange, enemyLayers);
+			foreach(Collider2D enemy in hitEnemies)
+			{
+				enemy.GetComponent<Enemy>().Grabbed();
+			}	
+		}
     } 
 
     private void swayF()

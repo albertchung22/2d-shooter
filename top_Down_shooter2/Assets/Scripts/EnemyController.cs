@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class EnemyController : MonoBehaviour
 {
     private float horizontal;
     private float speed = 3.5f;
-    private float jumpingPower = 4f;
-    private bool isFacingRight = true;
-    public bool isWalking = false;
-    public static PlayerMovement instance;
+    //private float jumpingPower = 4f;
+    //private bool isFacingRight = true;
+    //public bool isWalking = false;
+    public static EnemyController instance;
     public Animator animator;
     public bool move = false;
 
@@ -21,9 +21,9 @@ public class PlayerMovement : MonoBehaviour
      * Should be used for recieving inputs*/
     void Update()
     {
-        horizontal = Input.GetAxisRaw("Horizontal"); //returns a value of +/-1 or 0 depending on direction moved
+        /*horizontal = Input.GetAxisRaw("Horizontal"); //returns a value of +/-1 or 0 depending on direction moved
 
-        //Debug.Log(horizontal);
+        Debug.Log(horizontal);
         /*if (horizontal != 0)
         {
             isWalking = true;
@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
         /*if (horizontal != 0)
         {
             move = true;
-        }*/
+        }
 
         animator.SetFloat("Speed", Mathf.Abs(horizontal));
 
@@ -46,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
         }
 
-        //Flip();
+        //Flip();*/
     }
 
    
@@ -62,17 +62,6 @@ public class PlayerMovement : MonoBehaviour
     private bool IsGrounded()
     {
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer); // creates an invisible circle at the player's feet, allows player to jump when it collides with the ground layer
-    }
-
-    private void Flip()
-    {
-        if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
-        {
-            isFacingRight = !isFacingRight;
-            Vector3 localScale = transform.localScale;
-            localScale.x *= -1f;
-            transform.localScale = localScale;
-        }
     }
 
     private void Awake()
